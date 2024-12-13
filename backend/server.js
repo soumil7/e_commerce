@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import { connectDB } from "./config/db.js"
+// import { connectDB } from "./config/db.js"
 import itemRouter from "./routers/itemRoute.js"
 import userRouter from "./routers/userRoute.js"
 import 'dotenv/config.js'
@@ -18,17 +18,17 @@ const port = process.env.PORT || 3000
 app.use(express.json())
 
 //access anything from the frontend
-// app.use(cors())
+app.use(cors())
 
 // db connection 
-connectDB();
+// connectDB();
 
 //api endpoints
-// app.use("/api/item", itemRouter)
-// app.use("/images", express.static('uploads'))
-// app.use("/api/user", userRouter)
-// app.use("/api/cart", cartRouter)
-// app.use("/api/order", orderRouter)
+app.use("/api/item", itemRouter)
+app.use("/images", express.static('uploads'))
+app.use("/api/user", userRouter)
+app.use("/api/cart", cartRouter)
+app.use("/api/order", orderRouter)
 
 //get -> HTTP method ; we request data from server
 app.get("/", (req, res)=> {
